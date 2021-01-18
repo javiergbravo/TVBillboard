@@ -8,5 +8,5 @@ data class ExtraFieldModel(
     @SerializedName("name")
     val name: String?,
     @SerializedName("value")
-    val value: Int?
+    val value: String?
 )

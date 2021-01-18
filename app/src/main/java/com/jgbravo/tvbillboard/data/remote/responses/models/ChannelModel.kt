@@ -8,7 +8,7 @@ data class ChannelModel(
     @SerializedName("attachments")
     val attachments : List<AttachmentModel>?,
     @SerializedName("externalChannelId")
-    val externalChannelId : Int?,
+    val externalChannelId : Long?,
     @SerializedName("flags")
     val flags : Int?,
     @SerializedName("description")
@@ -28,7 +28,7 @@ data class ChannelModel(
     @SerializedName("contentDefinition")
     val contentDefinition : String?,
     @SerializedName("id")
-    val id : Int?,
+    val id : Long?,
     @SerializedName("serviceId")
     val serviceId : String?,
     @SerializedName("identifier")

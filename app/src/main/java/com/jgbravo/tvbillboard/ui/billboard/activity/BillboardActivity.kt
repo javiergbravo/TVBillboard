@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.jgbravo.tvbillboard.data.UIState
 import com.jgbravo.tvbillboard.databinding.ActivityBillboardBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import java.lang.Error
 
+@AndroidEntryPoint
 class BillboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBillboardBinding
@@ -25,7 +25,7 @@ class BillboardActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.billboardList.collect {
-                when(it) {
+                when (it) {
                     is UIState.Loading -> {
                         showLoader()
                     }

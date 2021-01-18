@@ -8,5 +8,5 @@ data class MetadataModel(
     @SerializedName("fullLength")
     val fullLength : Int?,
     @SerializedName("timestamp")
-    val timestamp : Int?
+    val timestamp : Long?
 )

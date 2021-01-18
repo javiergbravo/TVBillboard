@@ -5,16 +5,16 @@ import com.jgbravo.tvbillboard.data.remote.responses.BillboardResponse
 import com.jgbravo.tvbillboard.data.remote.responses.models.ChannelModel
 
 fun BillboardResponse.mapToChannelList(): List<Channel> {
-    val channelList = ArrayList<Channel>()
+    val list = ArrayList<Channel>()
     this.channelList?.let {
         it.forEach { channelModel ->
             val newChannel = channelModel.mapToChannel()
-            if (!newChannel.isNull()) {
-                channelList.add(newChannel)
+            if (newChannel.isNotNull()) {
+                list.add(newChannel)
             }
         }
     }
-    return channelList
+    return list
 }
 
 fun ChannelModel.mapToChannel() = Channel(
@@ -23,5 +23,5 @@ fun ChannelModel.mapToChannel() = Channel(
     category = category ?: ""
 )
 
-fun Channel.isNull() =
+fun Channel.isNotNull() =
     name.isNotEmpty() || imageURL.isNullOrEmpty() || category.isNullOrEmpty()
