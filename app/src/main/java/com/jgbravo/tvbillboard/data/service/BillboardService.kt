@@ -24,13 +24,14 @@ class BillboardService @Inject constructor(
         Log.i(TAG, json)
         return try {
             val response = Gson().fromJson(json, BillboardResponse::class.java)
+            Log.d(TAG, "BillboardResponse obtained successfully.")
             LocalResponse.success(response)
         } catch (e: JsonSyntaxException) {
-            val errorMessage = "Error de sintaxis del JSON: ${e.message}"
+            val errorMessage = "Error de sintaxis del JSON: ${e.message}."
             Log.e(TAG, errorMessage)
             LocalResponse.error(errorMessage, null)
         } catch (e: JsonParseException) {
-            val errorMessage = "Error al convertir el JSON a un objeto BillboardResponse: ${e.message}"
+            val errorMessage = "Error al convertir el JSON a un objeto BillboardResponse: ${e.message}."
             Log.e(TAG, errorMessage)
             LocalResponse.error(errorMessage, null)
         }

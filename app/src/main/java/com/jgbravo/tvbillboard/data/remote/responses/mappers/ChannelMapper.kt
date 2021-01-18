@@ -8,9 +8,11 @@ fun BillboardResponse.mapToChannelList(): List<Channel> {
     val list = ArrayList<Channel>()
     this.channelList?.let {
         it.forEach { channelModel ->
-            val newChannel = channelModel.mapToChannel()
-            if (newChannel.isNotNull()) {
-                list.add(newChannel)
+            channelModel.id?.let {
+                val newChannel = channelModel.mapToChannel()
+                if (newChannel.isNotNull()) {
+                    list.add(newChannel)
+                }
             }
         }
     }
@@ -18,10 +20,10 @@ fun BillboardResponse.mapToChannelList(): List<Channel> {
 }
 
 fun ChannelModel.mapToChannel() = Channel(
+    id = id!!,
     name = name ?: "",
-    imageURL = url ?: "",
+    imageEndpoint = url ?: "",
     category = category ?: ""
 )
 
-fun Channel.isNotNull() =
-    name.isNotEmpty() || imageURL.isNullOrEmpty() || category.isNullOrEmpty()
+fun Channel.isNotNull() = name.isNotEmpty() || imageEndpoint.isNotEmpty() || category.isNotEmpty()
