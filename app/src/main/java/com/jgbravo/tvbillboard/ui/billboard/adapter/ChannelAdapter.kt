@@ -49,7 +49,7 @@ class ChannelAdapter : RecyclerView.Adapter<ChannelAdapter.ChannelViewHolder>() 
 
             channelName.text = channel.name
 
-            Glide.with(holder.binding.root).load(BASE_URL_IMAGES + channel.imageEndpoint)
+            Glide.with(holder.binding.root).load("$BASE_URL_IMAGES/${channel.imageEndpoint}")
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
                 .into(channelImage)
 

@@ -1,9 +1,9 @@
 package com.jgbravo.tvbillboard.data.datasource
 
 import com.jgbravo.tvbillboard.data.entities.Channel
-import com.jgbravo.tvbillboard.data.remote.responses.LocalResponse
+import com.jgbravo.tvbillboard.data.entities.Resource
 
 interface DataSource {
 
-    fun getChannelList(): LocalResponse<List<Channel>>
+    fun getChannelList(): Resource<List<Channel>>
 }

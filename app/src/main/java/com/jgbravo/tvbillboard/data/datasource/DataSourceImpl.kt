@@ -1,6 +1,7 @@
 package com.jgbravo.tvbillboard.data.datasource
 
 import com.jgbravo.tvbillboard.data.entities.Channel
+import com.jgbravo.tvbillboard.data.entities.Resource
 import com.jgbravo.tvbillboard.data.remote.responses.LocalResponse
 import com.jgbravo.tvbillboard.data.remote.responses.mappers.mapToChannelList
 import com.jgbravo.tvbillboard.data.service.BillboardService
@@ -10,19 +11,19 @@ class DataSourceImpl @Inject constructor(
     private val service: BillboardService
 ) : DataSource {
 
-    override fun getChannelList(): LocalResponse<List<Channel>> {
+    override fun getChannelList(): Resource<List<Channel>> {
         val response = service.getAllChannels()
         if (response.status == LocalResponse.Status.SUCCESS) {
-            if (response.data?.channelList == null) {
-                return LocalResponse.error(
+            if (response.body?.channelList == null) {
+                return Resource.error(
                     "No se han podido recuperar correctamente los canales.",
                     null
                 )
             }
-            val channelList = response.data.mapToChannelList()
-            return LocalResponse.success(channelList)
+            val channelList = response.body.mapToChannelList()
+            return Resource.success(channelList)
         } else {
-            return LocalResponse.error(response.message!!, null)
+            return Resource.error(response.message!!, null)
         }
     }
 }

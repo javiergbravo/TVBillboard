@@ -8,7 +8,6 @@ import com.google.gson.JsonSyntaxException
 import com.jgbravo.tvbillboard.data.remote.responses.BillboardResponse
 import com.jgbravo.tvbillboard.data.remote.responses.LocalResponse
 import com.jgbravo.tvbillboard.utils.Constants
-import retrofit2.Response
 import javax.inject.Inject
 
 class BillboardService @Inject constructor(
