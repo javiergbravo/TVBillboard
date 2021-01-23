@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.jgbravo.tvbillboard.R
 import com.jgbravo.tvbillboard.data.entities.Channel
 import com.jgbravo.tvbillboard.databinding.CardviewChannelBinding
 import com.jgbravo.tvbillboard.utils.Constants.BASE_URL_IMAGES
@@ -51,6 +52,7 @@ class ChannelAdapter : RecyclerView.Adapter<ChannelAdapter.ChannelViewHolder>() 
 
             Glide.with(holder.binding.root)
                 .load("$BASE_URL_IMAGES${channel.imageEndpoint}")
+                .error(R.drawable.ic_image_error)
                 .fitCenter()
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
                 .into(channelImage)
