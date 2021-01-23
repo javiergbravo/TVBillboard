@@ -68,7 +68,7 @@ class ChannelAdapter : RecyclerView.Adapter<ChannelAdapter.ChannelViewHolder>() 
         differ.submitList(list)
     }
 
-    fun setOnClickListener(listener: (Channel) -> Unit) {
+    private fun setOnClickListener(listener: (Channel) -> Unit) {
         onItemClickListener = listener
     }
 }
