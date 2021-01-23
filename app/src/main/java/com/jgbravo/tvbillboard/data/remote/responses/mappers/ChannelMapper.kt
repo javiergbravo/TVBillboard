@@ -22,8 +22,17 @@ fun BillboardResponse.mapToChannelList(): List<Channel> {
 fun ChannelModel.mapToChannel() = Channel(
     id = id!!,
     name = name ?: "",
-    imageEndpoint = url ?: "",
+    imageEndpoint = getEndpoint() ?: "",
     category = category ?: ""
 )
+
+fun ChannelModel.getEndpoint() : String? {
+    attachments?.forEach {
+        if(it.name.equals("LOGO")) {
+            return it.value
+        }
+    }
+    return null
+}
 
 fun Channel.isNotNull() = name.isNotEmpty() || imageEndpoint.isNotEmpty() || category.isNotEmpty()

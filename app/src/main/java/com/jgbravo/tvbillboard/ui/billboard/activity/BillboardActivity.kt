@@ -33,7 +33,7 @@ class BillboardActivity : AppCompatActivity() {
         channelAdapter = ChannelAdapter()
         binding.billboardRecyclerview.apply {
             adapter = channelAdapter
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = GridLayoutManager(context, 3)
         }
     }
 
