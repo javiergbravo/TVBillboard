@@ -2,6 +2,7 @@
 <resources>
     <!-- Default -->
     <dimen name="margin_default">8dp</dimen>
+    <dimen name="padding_vertical_small">3dp</dimen>
 
     <!-- Activity -->
     <dimen name="activity_padding">8dp</dimen>

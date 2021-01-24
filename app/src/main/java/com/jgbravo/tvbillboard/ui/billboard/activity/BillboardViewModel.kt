@@ -16,6 +16,8 @@ class BillboardViewModel @ViewModelInject constructor(
     private val _channelList = MutableLiveData<Resource<List<Channel>>>()
     val channelList: LiveData<Resource<List<Channel>>> get() = _channelList
 
+    var allCategories = ArrayList<String>()
+
     init {
         getBillboard()
     }
@@ -24,9 +26,18 @@ class BillboardViewModel @ViewModelInject constructor(
         _channelList.postValue(Resource.loading())
         val resource = datasource.getChannelList()
         if (resource.state == Resource.State.SUCCESS) {
+            resource.data?.let { setCategories(it) }
             _channelList.postValue(Resource.success(resource.data))
         } else {
             _channelList.postValue(Resource.error(resource.message!!, null))
+        }
+    }
+
+    private fun setCategories(channels: List<Channel>) {
+        channels.forEach {
+            if (!allCategories.contains(it.category)) {
+                allCategories.add(it.category)
+            }
         }
     }
 }

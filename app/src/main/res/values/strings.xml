@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TVBillboard</string>
+
+    <!-- Menu -->
+    <string name="action_filter">Filtro</string>
+    <string name="clean_filter">Limpiar filtros</string>
 </resources>
