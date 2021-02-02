@@ -1,7 +1,7 @@
 # [TVBillboard](https://github.com/javiergbravo/TVBillboard)
 
 ## 🌟 About
-It simply loads data from local JSON and display inside a GridLayout. This repository shows a clean code with MVVM architecture and use professional libraries with Kotlin language.
+It simply app that loads a billboard from local JSON and display inside a RecyclerView as a GridLayout. This repository shows a clean code with MVVM architecture and use professional libraries with Kotlin language.
 Use models for services and entities as application objects. The mapping is done in the datasource to provide a Resource object to ViewModel from Response of mock service (JSON). And ViewModel makes a LiveData from Resource to display in Activity or fragment.
 
 ![OS](https://img.shields.io/badge/OS-Android-3DDC84?logo=Android) ![Language](https://img.shields.io/badge/Language-Kotlin-0095D5?logo=kotlin) ![Environment](https://img.shields.io/badge/Environment-Android_Studio-3DDC84?logo=android-studio)
