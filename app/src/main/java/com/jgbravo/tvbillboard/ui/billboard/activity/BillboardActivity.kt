@@ -6,8 +6,11 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.jgbravo.tvbillboard.R
 import com.jgbravo.tvbillboard.data.entities.Resource
@@ -30,7 +33,7 @@ class BillboardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setUpRecyclerView()
-        setUpFilterButton()
+        //setUpFilters()
         collectChannels()
     }
 
@@ -43,7 +46,22 @@ class BillboardActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpFilterButton() {
+    private fun setUpFilters() {
+
+        binding.filters.setOnClickListener {
+            val selectedChips = binding.filters.children
+                .filter { (it as Chip).isChecked }
+                .map { (it as Chip).text.toString() }
+        }
+        /*
+        binding.filters.apply {
+            setOnCheckedChangeListener { group, checkedId ->
+                val filtersSelected = chipList.filter { it.isSelected }
+                viewModel.filterChannel(filtersSelected)
+            }
+        }
+        */
+
         binding.cleanFilterButton.setOnClickListener {
             binding.filters.clearCheck() // Clean all filters
         }
@@ -59,6 +77,7 @@ class BillboardActivity : AppCompatActivity() {
                     hideLoader()
                     channelAdapter.submitList(it.data!!)
                     binding.filters.setNewList(viewModel.allCategories)
+                    setUpFilters()
                 }
                 Resource.State.ERROR -> {
                     hideLoader()
@@ -79,14 +98,6 @@ class BillboardActivity : AppCompatActivity() {
         binding.billboardRecyclerview.visibility = View.GONE
     }
 
-    private fun hideFilters() {
-        binding.filterLayout.visibility = View.GONE
-    }
-
-    private fun showFilters() {
-        binding.filterLayout.visibility = View.VISIBLE
-    }
-
     private fun toggleFilterVisibility() {
         binding.filterLayout.apply {
             isVisible = !isVisible
@@ -99,7 +110,7 @@ class BillboardActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_favorite -> {
             toggleFilterVisibility()
             true

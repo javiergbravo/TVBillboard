@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.view.children
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.jgbravo.tvbillboard.databinding.TvBillboardChipGroupBinding
@@ -14,6 +15,8 @@ class TVBillboardChipGroup @JvmOverloads constructor(
 
     private val binding: TvBillboardChipGroupBinding =
         TvBillboardChipGroupBinding.inflate(LayoutInflater.from(context))
+
+    val chipList = ArrayList<Chip>()
 
     init {
         addView(binding.root)
@@ -26,16 +29,22 @@ class TVBillboardChipGroup @JvmOverloads constructor(
         }
     }
 
+    fun getChipsSelected(): List<Chip> = binding.root.children
+        .toList()
+        .filter { (it as Chip).isChecked } as List<Chip>
+
+
+
     private fun addChip(label: String) {
-        Chip(context).apply {
+        val newChip = Chip(context).apply {
             id = View.generateViewId()
             text = label
             isClickable = true
             isCheckable = true
-            //checkedIcon =
             isCheckedIconVisible = true
             chipSpacingHorizontal = 8
             addView(this)
         }
+        chipList.add(newChip)
     }
 }
